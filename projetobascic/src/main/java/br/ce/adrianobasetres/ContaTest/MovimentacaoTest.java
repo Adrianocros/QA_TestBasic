@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static br.ce.adrianobasetres.core.Propriedades.NOME_CONTA_ALTERADA;
 import static br.ce.adrianobasetres.utils.DataUtils.obtarDataFuturaFormatada;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -31,7 +32,7 @@ public class MovimentacaoTest extends BaseTest {
         movimentacaoPage.setDescricao("Pagamento refetente a venda de hoje");
         movimentacaoPage.setInteressado("Adriano Cros");
         movimentacaoPage.setValor("3000");
-        movimentacaoPage.setConta("Adriano Bianchi C");
+        movimentacaoPage.setConta(NOME_CONTA_ALTERADA);
         movimentacaoPage.setStatusPago();
         movimentacaoPage.salvar();
 
@@ -67,7 +68,7 @@ public class MovimentacaoTest extends BaseTest {
         movimentacaoPage.setDescricao("Pagamento refetente a venda de hoje");
         movimentacaoPage.setInteressado("Adriano Cros");
         movimentacaoPage.setValor("3000");
-        movimentacaoPage.setConta("Adriano Bianchi C");
+        movimentacaoPage.setConta(NOME_CONTA_ALTERADA);
         movimentacaoPage.setStatusPago();
         movimentacaoPage.salvar();
 

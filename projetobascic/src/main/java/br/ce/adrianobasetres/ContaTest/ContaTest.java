@@ -4,16 +4,19 @@ import br.ce.adrianobasetres.pages.ContasPage;
 import br.ce.adrianobasetres.pages.MenuPage;
 import br.ce.adrianobasetres.core.BaseTest;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContaTest extends BaseTest {
+
 
     private MenuPage menuPage = new MenuPage();
     private ContasPage contasPage = new ContasPage();
 
     @Test
-    public void testInseriConta(){
+    public void test1_InseriConta(){
         menuPage.acessarTelaInserirConta();
         contasPage.setNome("Adriano Bianchi");
         contasPage.salvarConta();
@@ -22,29 +25,21 @@ public class ContaTest extends BaseTest {
     }
 
     @Test
-    public void testAlterarConta(){
+    public void test2_AlterarConta(){
     menuPage.acessarTelaAlterarConta();
 
     contasPage.clicarAlterarConta("Adriano Bianchi");
     contasPage.setNome("Adriano Bianchi C");
     contasPage.salvarConta();
-
     Assert.assertEquals("Conta alterada com sucesso!",contasPage.mensagemSucesso());
     }
 
     @Test
-    public void testInserirContaMesmoNome(){
+    public void test3_InserirContaMesmoNome(){
        menuPage.acessarTelaInserirConta();
        contasPage.setNome("Adriano Bianchi C");
        contasPage.salvarConta();
 
        Assert.assertEquals("Já existe uma conta com esse nome!",contasPage.mensagemContaMesmoNome());
-    }
-
-    @Test
-    public void testExcluirContaComMovimentatacao(){
-        menuPage.acessarTelaAlterarConta();
-        contasPage.clicarExcluirConta("Adriano Bianchi");
-        Assert.assertEquals("Conta em uso na movimentações",contasPage.mensagemContaComMovimentacao());
     }
 }

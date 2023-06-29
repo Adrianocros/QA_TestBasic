@@ -5,7 +5,10 @@ import br.ce.adrianobasetres.pages.MovimentacaoPage;
 import br.ce.adrianobasetres.utils.DataUtils;
 import br.ce.adrianobasetres.core.BaseTest;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.internal.MethodSorter;
+import org.junit.runners.MethodSorters;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -13,21 +16,22 @@ import java.util.List;
 
 import static br.ce.adrianobasetres.utils.DataUtils.obtarDataFuturaFormatada;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovimentacaoTest extends BaseTest {
     MenuPage menuPage = new MenuPage();
 
     private MovimentacaoPage movimentacaoPage = new MovimentacaoPage();
 
     @Test
-    public void testInserirMovimentacao(){
+    public void test1_InserirMovimentacao(){
         menuPage.inserirMovimentacao();
-        movimentacaoPage.setTipo("Despesa");
+        movimentacaoPage.setTipo("Receita");
         movimentacaoPage.setDataMovimentacao(obtarDataFuturaFormatada(new Date()));
         movimentacaoPage.setDataTransacao(obtarDataFuturaFormatada(new Date()));
         movimentacaoPage.setDescricao("Pagamento refetente a venda de hoje");
         movimentacaoPage.setInteressado("Adriano Cros");
         movimentacaoPage.setValor("3000");
-        movimentacaoPage.setConta("Adriano Bianchi");
+        movimentacaoPage.setConta("Adriano Bianchi C");
         movimentacaoPage.setStatusPago();
         movimentacaoPage.salvar();
 
@@ -35,7 +39,7 @@ public class MovimentacaoTest extends BaseTest {
     }
 
     @Test
-    public void testCamposObrigatorios(){
+    public void test2_CamposObrigatorios(){
         menuPage.inserirMovimentacao();
         movimentacaoPage.salvar();
         List<String> erros = movimentacaoPage.obterErros();
@@ -50,7 +54,7 @@ public class MovimentacaoTest extends BaseTest {
     }
 
     @Test
-    public void testMovimentacaoDataFutura(){
+    public void test3_MovimentacaoDataFutura(){
         menuPage.inserirMovimentacao();
         movimentacaoPage.setTipo("Receita");
 
@@ -63,7 +67,7 @@ public class MovimentacaoTest extends BaseTest {
         movimentacaoPage.setDescricao("Pagamento refetente a venda de hoje");
         movimentacaoPage.setInteressado("Adriano Cros");
         movimentacaoPage.setValor("3000");
-        movimentacaoPage.setConta("Adriano Bianchi");
+        movimentacaoPage.setConta("Adriano Bianchi C");
         movimentacaoPage.setStatusPago();
         movimentacaoPage.salvar();
 
